@@ -33,7 +33,7 @@ This build script only works for Xcode 15.2 with a minimum deployment target of 
 
 I'm just one guy who needed to ship one game. I couldn't find a single example of the thing I wanted to do (for any version of Xcode), so I humbly offer the thing that solved my problem.
 
-If you need to support a different version of Xcode, you will need to write a slighly different version of this script. The best way to do that is to download the version of Xcode you want to use, create a default vanilla iOS application, build it, and then inspect the bundle to see how everything is laid out. Deconstruct what Apple's tools make so you can then re-construct it with your own tools.
+If you need to support a different version of Xcode, you will need to write a slightly different version of this script. The best way to do that is to download the version of Xcode you want to use, create a default vanilla iOS application, build it, and then inspect the bundle to see how everything is laid out. Deconstruct what Apple's tools make so you can then re-construct it with your own tools.
 
 ## App Icons
 You will notice that there's a file called Assets.car in the resources directory. That's just the game's App Icon. In order to avoid using xcodebuild, I had to create a separate Xcode project to create the icon from an xcassets folder within Xcode. I built the sample app, went into the build bundle's content directory, and then copied Assets.car from it into my own resources directory.
