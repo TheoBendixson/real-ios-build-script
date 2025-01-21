@@ -1,5 +1,5 @@
 # A From-Scratch iOS Build System For An Actual Shipped Game
-This is example of a complete iOS app build system, written 100% from scratch, self-contained in a bash shell script.
+This is an example of a complete iOS app build system, written 100% from scratch, self-contained in a bash shell script.
 
 It's not a theoretical build script for some hobby project that has not shipped. I used this script (and still use it) to build and update the [iOS version of my first game, Mooselutions](https://apps.apple.com/us/app/mooselutions/id6477404960?mt=12), a real product you can spend money on at the App Store.
 
@@ -27,6 +27,13 @@ The script also has a release process that signs the app bundle with distributio
 
 # All the gotchas explained
 It wouldn't be Apple if there weren't a ton of undocumented rules you've gotta follow. Here's an explanation of all the trouble I ran into while creating this.
+
+## Xcode Versions
+This build script only works for Xcode 15.2 with a minimum deployment target of iOS 17. As such, it has adopted all of the acceptable file structure conventions for that moment in time, and it does not support any other Xcode version.
+
+I'm just one guy who needed to ship one game. I couldn't find a single example of the thing I wanted to do (for any version of Xcode), so I humbly offer the thing that solved my problem.
+
+If you need to support a different version of Xcode, you will need to write a slighly different version of this script. The best way to do that is to download the version of Xcode you want to use, create a default vanilla iOS application, build it, and then inspect the bundle to see how everything is laid out. Deconstruct what Apple's tools make so you can then re-construct it with your own tools.
 
 ## App Icons
 You will notice that there's a file called Assets.car in the resources directory. That's just the game's App Icon. In order to avoid using xcodebuild, I had to create a separate Xcode project to create the icon from an xcassets folder within Xcode. I built the sample app, went into the build bundle's content directory, and then copied Assets.car from it into my own resources directory.
